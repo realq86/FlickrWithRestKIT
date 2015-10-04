@@ -19,11 +19,11 @@
     // Do any additional setup after loading the view.
     self.uiImageDictionary = [[NSMutableDictionary alloc] init];
     
-    FlickrServer *flickrServer = [[FlickrServer alloc] init];
+    FlickrServer *flickrServer = [FlickrServer sharedInstance];
     
     [flickrServer setValidPageSize:@"10"];
     
-    [flickrServer methodFlickrPhotosRecentAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
+    [flickrServer flickrPhotosRecentAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         
         [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
             

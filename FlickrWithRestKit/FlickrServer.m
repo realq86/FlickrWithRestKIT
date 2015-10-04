@@ -20,6 +20,22 @@
 #define kPHOTO_SIZE_DEFAULT @"m"
 #define kPHOTO_SIZE_THUMBNAIL @"t"
 
+/*
+typedef NS_ENUM(NSInteger, photoSizeValues){
+    SmallSquare75x75size = 1,
+    LargeSquare150x150 = @"q",
+    Thumbnail = @"t",
+    Small240OnLong = @"m",
+    Small320OnLong = @"n",
+    Medium500OnLong = @"-",
+    Medium640OnLong = @"z",
+
+    Medium800OnLong = @"c";
+    Large1024OnLong = @"b";
+    Large1600OnLong = @"h";
+    Large2048OnLong = @"k";
+};*/
+
 
 @interface FlickrServer()
 
@@ -33,12 +49,25 @@
 
 @implementation FlickrServer
 
+
++ (FlickrServer *)sharedInstance{
+    
+    static FlickrServer *_sharedInstance = nil;
+    static dispatch_once_t oncePredicate;
+    dispatch_once(&oncePredicate, ^{
+        _sharedInstance = [[FlickrServer alloc] init];
+    });
+    return _sharedInstance;
+    
+}
+
 - (instancetype)init{
-    self = [super init];
     
-    [self setFlickrAPIKey:kCLIENTID];
-    [self setValidPageSize:kNUMBER_PER_PAGE_DEFAULT];
+        self = [super init];
     
+        [self setFlickrAPIKey:kCLIENTID];
+        [self setValidPageSize:kNUMBER_PER_PAGE_DEFAULT];
+
     return self;
 }
 
@@ -76,7 +105,7 @@
 }
 
 //Public API for Flickr API method: flickr.interesting.getList
-- (void)methodFlickrInterestingnessGetListAtSize:(NSString *)photoSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
+- (void)flickrInterestingnessGetListAtSize:(NSString *)photoSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
     
     //Check if PhotoSizes paramater is valid or set default
     photoSize = [FlickrServer checkValidPhotoSizes:photoSize];
@@ -97,7 +126,7 @@
 }
 
 //Public API for Flickr API method: flackr.photos.recent
-- (void)methodFlickrPhotosRecentAtSize:(NSString *)photoSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
+- (void)flickrPhotosRecentAtSize:(NSString *)photoSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
     
     //Check if PhotoSizes paramater is valid or set default
     photoSize = [FlickrServer checkValidPhotoSizes:photoSize];
@@ -170,8 +199,13 @@
                     photo.ispublic = [photoObject[@"ispublic"] intValue];
                     [self.photosObjectArray addObject:photo];
                 }
-                NSLog(@"photoObjectsArray is %@", self.photosObjectArray.description);
-                block(nil, self.photosObjectArray);
+                
+                dispatch_queue_t mainQueue = dispatch_get_main_queue();
+                dispatch_async(mainQueue, ^{
+                    NSLog(@"photoObjectsArray is %@", self.photosObjectArray.description);
+                    block(nil, self.photosObjectArray);
+                });
+                
             }
         }
     });

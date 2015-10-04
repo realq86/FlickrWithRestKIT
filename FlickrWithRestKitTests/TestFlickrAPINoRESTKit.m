@@ -53,7 +53,7 @@
     
     XCTestExpectation *completionExpectation = [self expectationWithDescription:@"Query for Recent and expect a page of UIImage"];
     
-    [self.flickrServer methodFlickrPhotosRecentAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray){
+    [self.flickrServer flickrPhotosRecentAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray){
         if(!error && photoObjectsArray.count == 10){
             
                 NSLog(@"message = %@", [photoObjectsArray description]);
@@ -74,7 +74,7 @@
     
     XCTestExpectation *completionExpectation = [self expectationWithDescription:@"Starting download 1 photo imageFile"];
         __block NSArray *testPhotosObjectArray;
-    [self.flickrServer methodFlickrPhotosRecentAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
+    [self.flickrServer flickrPhotosRecentAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         
         testPhotosObjectArray = photoObjectsArray;
         
