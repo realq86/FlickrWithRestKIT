@@ -21,9 +21,9 @@
     self.uiImageDictionary = [[NSMutableDictionary alloc] init];
     
     FlickrServer *flickrServer = [[FlickrServer alloc] init];
-
+    [flickrServer setValidPageSize:@"20"];
     
-    [flickrServer methodFlickrInterestingnessGetListAtSize:@"t" perPageSize:@"10" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
+    [flickrServer methodFlickrInterestingnessGetListAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         
         [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
             

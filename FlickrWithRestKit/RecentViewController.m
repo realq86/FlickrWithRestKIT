@@ -21,7 +21,9 @@
     
     FlickrServer *flickrServer = [[FlickrServer alloc] init];
     
-    [flickrServer methodFlickrPhotosRecentAtSize:@"Q" perPageSize:@"100" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
+    [flickrServer setValidPageSize:@"10"];
+    
+    [flickrServer methodFlickrPhotosRecentAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         
         [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
             

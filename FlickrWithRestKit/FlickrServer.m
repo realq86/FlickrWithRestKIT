@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSString *apiKey;
 @property (nonatomic, strong) NSMutableArray *photosObjectArray;
 @property (nonatomic, strong) NSMutableDictionary *uiImageDictionary;
+@property (nonatomic, strong) NSString *perPageSize;
 
 @end
 
@@ -35,7 +36,8 @@
 - (instancetype)init{
     self = [super init];
     
-    [self setFlickrAPIKey:nil];
+    [self setFlickrAPIKey:kCLIENTID];
+    [self setValidPageSize:kNUMBER_PER_PAGE_DEFAULT];
     
     return self;
 }
@@ -61,27 +63,27 @@
     return photoSize;
 }
 
-+ (NSString *)checkValidPageSize:(NSString *)pageSize{
+
+- (void)setValidPageSize:(NSString *)pageSize{
     
     //Check if pageSize is valid or set default
     if(pageSize.intValue>100 || !pageSize){
         pageSize=kNUMBER_PER_PAGE_DEFAULT;
     }
-    return pageSize;
+    
+    self.perPageSize = pageSize;
+
 }
 
 //Public API for Flickr API method: flickr.interesting.getList
-- (void)methodFlickrInterestingnessGetListAtSize:(NSString *)photoSize perPageSize:(NSString *)pageSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
+- (void)methodFlickrInterestingnessGetListAtSize:(NSString *)photoSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
     
     //Check if PhotoSizes paramater is valid or set default
     photoSize = [FlickrServer checkValidPhotoSizes:photoSize];
-    
-    //Check if pageSize is valid or set default
-    pageSize = [FlickrServer checkValidPageSize:pageSize];
 
     
     //Query with method flickr.interestingness.getList
-    NSString *queryURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=%@&per_page=%@&format=json&nojsoncallback=1", self.apiKey, pageSize];
+    NSString *queryURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=%@&per_page=%@&format=json&nojsoncallback=1", self.apiKey, self.perPageSize];
     
     [self queryWith:(NSString *)queryURL WithPhotoSize:photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         if(!error){
@@ -95,16 +97,13 @@
 }
 
 //Public API for Flickr API method: flackr.photos.recent
-- (void)methodFlickrPhotosRecentAtSize:(NSString *)photoSize perPageSize:(NSString *)pageSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
+- (void)methodFlickrPhotosRecentAtSize:(NSString *)photoSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
     
     //Check if PhotoSizes paramater is valid or set default
     photoSize = [FlickrServer checkValidPhotoSizes:photoSize];
     
-    //Check if pageSize is valid or set default
-    pageSize = [FlickrServer checkValidPageSize:pageSize];
-    
     //Query with method flickr.photos.getRecent
-    NSString *queryURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=%@&per_page=%@&format=json&nojsoncallback=1", self.apiKey, pageSize];
+    NSString *queryURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=%@&per_page=%@&format=json&nojsoncallback=1", self.apiKey, self.perPageSize];
 
     [self queryWith:(NSString *)queryURL WithPhotoSize:photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         if(!error){
@@ -216,7 +215,7 @@
     NSDictionary *queryParams = @{@"nojsoncallback" : @"1",
                                   @"api_key" : clientID,
                                   @"format" : @"json",
-                                  @"per_page" : kNUMBER_PER_PAGE,
+                                  @"per_page" : kNUMBER_PER_PAGE_DEFAULT,
                                   @"text" : kSEARCH_TERMS
                                   };
     
@@ -244,7 +243,7 @@
 {
     if(!size)
     {
-        size = kPHOTO_SIZE_M;
+        size = kPHOTO_SIZE_DEFAULT;
     }
     return [NSString stringWithFormat:@"http://farm%d.staticflickr.com/%d/%lld_%@_%@.jpg",flickrPhoto.farm,flickrPhoto.server,flickrPhoto.photoID,flickrPhoto.secret,size];
 }
