@@ -16,4 +16,10 @@
 @property (nonatomic) long long photoID;
 @property (nonatomic, strong) NSString *secret;
 
+@property (nonatomic) long long isfamily;
+@property (nonatomic) long long isfriend;
+@property (nonatomic) long long ispublic;
+@property (nonatomic, strong) NSString *owner;
+
+
 @end

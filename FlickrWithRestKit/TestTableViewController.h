@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FlickrServer.h"
 @interface TestTableViewController : UITableViewController
+
+@property (nonatomic, strong) NSArray *photosObjectArray;
+@property (nonatomic, strong) NSMutableDictionary *uiImageDictionary;
 
 @end

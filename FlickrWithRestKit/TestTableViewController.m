@@ -7,12 +7,9 @@
 //
 
 #import "TestTableViewController.h"
-#import "FlickrServer.h"
 
 @interface TestTableViewController ()
 
-@property (nonatomic, strong) NSArray *photosObjectArray;
-@property (nonatomic, strong) NSMutableDictionary *uiImageDictionary;
 
 @end
 
@@ -21,26 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    self.uiImageDictionary = [[NSMutableDictionary alloc] init];
-
-    FlickrServer *flickrServer = [[FlickrServer alloc] init];
-    
-    [flickrServer queryPhotosWithCompletionBlock:^(NSArray *photosObjectArray){
-        self.photosObjectArray = photosObjectArray;
-        
-        [flickrServer downLoadPhotos:self.photosObjectArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
-            NSLog(@"uiImageDictionary is %@", uiImageDictionary.description);
-            self.uiImageDictionary = uiImageDictionary;
-            [self.tableView reloadData];
-        }];
-
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +40,7 @@
     return self.uiImageDictionary.count;
 }
 
-
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestTableViewCellID" forIndexPath:indexPath];
     
@@ -73,7 +51,7 @@
     return cell;
 }
 
-
+*/
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
