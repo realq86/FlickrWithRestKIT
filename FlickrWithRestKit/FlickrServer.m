@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray *photosObjectArray;
 @property (nonatomic, strong) NSMutableDictionary *uiImageDictionary;
 @property (nonatomic, strong) NSString *perPageSize;
+@property (nonatomic, strong) NSString *pageIndex;
 @end
 
 @implementation FlickrServer
@@ -84,6 +85,14 @@
 
 }
 
+- (void)setValidPageIndex:(NSString *)pageIndexInput{
+    if(!pageIndexInput)
+        pageIndexInput = @"1";
+    
+    self.pageIndex = pageIndexInput;
+    
+}
+
 //Public API for Flickr API method: flickr.interesting.getList
 - (void)flickrInterestingnessGetListAtSize:(NSString *)photoSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
     
@@ -93,7 +102,7 @@
 
     
     //Query with method flickr.interestingness.getList
-    NSString *queryURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=%@&per_page=%@&format=json&nojsoncallback=1", self.apiKey, self.perPageSize];
+    NSString *queryURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.interestingness.getList&api_key=%@&per_page=%@&page=%@&format=json&nojsoncallback=1", self.apiKey, self.perPageSize, self.pageIndex];
     
     [self queryWith:(NSString *)queryURL WithPhotoSize:photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         if(!error){
@@ -113,7 +122,7 @@
     photoSize = [FlickrServer checkValidPhotoSizes:photoSize];
     
     //Query with method flickr.photos.getRecent
-    NSString *queryURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=%@&per_page=%@&format=json&nojsoncallback=1", self.apiKey, self.perPageSize];
+    NSString *queryURL = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=%@&per_page=%@&page=%@&format=json&nojsoncallback=1", self.apiKey, self.perPageSize, self.pageIndex];
 
     [self queryWith:(NSString *)queryURL WithPhotoSize:photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         if(!error){
@@ -159,6 +168,8 @@
             else{
                 //Obtain the photos array from a JSON dictionary of a list of photos.
                 NSArray *jsonObjectArray = jsonObjectsDictionary[@"photos"][@"photo"];
+                NSString *pageNumber = jsonObjectsDictionary[@"photos"][@"page"];
+                NSLog(@"pageNumber %@", pageNumber);
                 NSLog(@"jsonObjectDictionary = %@", jsonObjectsDictionary.description);
                 
                 self.photosObjectArray  = [[NSMutableArray alloc] init];

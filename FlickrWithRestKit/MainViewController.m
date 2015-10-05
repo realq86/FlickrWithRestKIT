@@ -12,6 +12,8 @@
 
 @interface MainViewController ()
 
+@property (nonatomic) NSString *pageNumber;
+
 @end
 
 @implementation MainViewController
@@ -44,16 +46,34 @@
     
     if([[segue identifier] isEqualToString:@"segueToRecentLowRes"] || [[segue identifier] isEqualToString:@"segueToInterestingLowRes"]){
         viewController.photoSize = @"m";
+        viewController.pageIndex = self.pageNumber;
         NSLog(@"setting size to t");
     }
     
     if([[segue identifier] isEqualToString:@"segueToRecentHiRes"] || [[segue identifier] isEqualToString:@"segueToInterestingHiRes"]){
         viewController.photoSize = @"z";
+        viewController.pageIndex = self.pageNumber;
+
         NSLog(@"setting size to m");
     }
     
     
 }
+
+
+- (IBAction)pageNumberControlAction:(id)sender {
+    
+        
+    self.pageNumber = @(self.pageNumberControl.selectedSegmentIndex+1);
+    
+    
+}
+
+
+
+
+
+
 
 
 @end

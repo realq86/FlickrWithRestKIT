@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MainViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UISegmentedControl *pageNumberControl;
+- (IBAction)pageNumberControlAction:(id)sender;
 
 @end

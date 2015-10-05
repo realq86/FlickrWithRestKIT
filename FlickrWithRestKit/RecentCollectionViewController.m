@@ -7,7 +7,7 @@
 //
 
 #import "RecentCollectionViewController.h"
-
+#import "ParentCollectionViewCell.h"
 #define kCLIENTID @"d5c7df3552b89d13fe311eb42715b510"
 
 
@@ -33,17 +33,28 @@
     FlickrServer *flickrServer = [FlickrServer sharedInstance];
     [flickrServer setFlickrAPIKey:kCLIENTID];
     [flickrServer setValidPageSize:@"20"];
+    [flickrServer setValidPageIndex:self.pageIndex];
     [flickrServer flickrPhotosRecentAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
         [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
             self.uiImageDictionary = uiImageDictionary;
             [self.collectionView reloadData];
         }];
-    }];
-}
+    }];}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (ParentCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    ParentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ParentCollectionViewCellID" forIndexPath:indexPath];
+    
+    // Set the uiImage inside the cell from the uiImageDictionary
+    UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
+    cell.imageView.image = image;
+    
+    return cell;
 }
 
 /*

@@ -14,4 +14,5 @@
 @property (nonatomic, strong) NSMutableDictionary *uiImageDictionary;
 
 @property (nonatomic) NSString *photoSize;
+@property (nonatomic) NSString *pageIndex;
 @end

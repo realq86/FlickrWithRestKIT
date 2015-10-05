@@ -34,6 +34,7 @@
     FlickrServer *flickrServer = [FlickrServer sharedInstance];
     [flickrServer setFlickrAPIKey:kCLIENTID];
     [flickrServer setValidPageSize:@"20"];
+    [flickrServer setValidPageIndex:self.pageIndex];
     [flickrServer flickrInterestingnessGetListAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
     [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
             self.uiImageDictionary = uiImageDictionary;

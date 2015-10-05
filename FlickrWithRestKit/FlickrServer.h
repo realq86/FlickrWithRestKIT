@@ -19,6 +19,8 @@
 //Default is set to 10 if not set or a number set is greater than 100.
 - (void)setValidPageSize:(NSString *)pageSize;
 
+- (void)setValidPageIndex:(NSString *)pageIndexInput;
+
 /*API call to Query for a Dictionary of Photos with Flickr API Method:flickr.interestingness.getList
 A default photo size of "m" medium will be set if photoSize is nil.  Default pagesize is 10 if pageSize is nil or greater than 100.
 Use Block to access the array of JSON Photo class object with photoOjbectArray after thread completes.*/

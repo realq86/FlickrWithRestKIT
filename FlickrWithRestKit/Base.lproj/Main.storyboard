@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ofW-0W-9Vn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Recent View Controller-->
@@ -52,7 +53,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="190" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="X1B-Cx-Kn0">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="X1B-Cx-Kn0">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
@@ -347,11 +348,36 @@
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xeg-Qd-3Uy">
+                                <rect key="frame" x="-61" y="-14" width="123" height="29"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                    <segment title="4"/>
+                                    <segment title="5"/>
+                                </segments>
+                                <connections>
+                                    <action selector="pageNumberControlAction:" destination="vnr-3P-K6W" eventType="valueChanged" id="VrT-Uo-OG3"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Page Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofz-OX-zH8">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="xeg-Qd-3Uy" firstAttribute="top" secondItem="ofz-OX-zH8" secondAttribute="bottom" constant="22" id="2Jh-Uf-gDg"/>
                             <constraint firstItem="Ghc-w9-R2M" firstAttribute="leading" secondItem="z79-GP-Y4X" secondAttribute="leading" id="7YO-PB-aoR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xeg-Qd-3Uy" secondAttribute="trailing" constant="7" id="8xy-w8-Oxg"/>
+                            <constraint firstItem="xeg-Qd-3Uy" firstAttribute="leading" secondItem="z79-GP-Y4X" secondAttribute="leadingMargin" constant="7" id="JaC-bG-mrC"/>
                             <constraint firstItem="fLJ-gu-JZ6" firstAttribute="top" secondItem="hnM-Gf-Za6" secondAttribute="bottom" constant="100" id="LGY-7v-rsj"/>
+                            <constraint firstItem="ofz-OX-zH8" firstAttribute="leading" secondItem="z79-GP-Y4X" secondAttribute="leading" constant="23" id="QqQ-7m-BD4"/>
                             <constraint firstAttribute="trailing" secondItem="dkJ-4G-aD1" secondAttribute="trailing" constant="16" id="QyV-NT-cOl"/>
+                            <constraint firstItem="ofz-OX-zH8" firstAttribute="top" secondItem="z04-Vb-poi" secondAttribute="bottom" constant="8" id="VoZ-2w-MUp"/>
                             <constraint firstItem="Ghc-w9-R2M" firstAttribute="top" secondItem="hnM-Gf-Za6" secondAttribute="bottom" id="Yvu-HQ-rK1"/>
                             <constraint firstAttribute="centerX" secondItem="z04-Vb-poi" secondAttribute="centerX" id="gKd-Mb-Mx0"/>
                             <constraint firstItem="z04-Vb-poi" firstAttribute="top" secondItem="fLJ-gu-JZ6" secondAttribute="bottom" constant="85" id="km7-VA-OdG"/>
@@ -367,6 +393,8 @@
                                 <exclude reference="fLJ-gu-JZ6"/>
                                 <exclude reference="z04-Vb-poi"/>
                                 <exclude reference="dkJ-4G-aD1"/>
+                                <exclude reference="xeg-Qd-3Uy"/>
+                                <exclude reference="ofz-OX-zH8"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="7YO-PB-aoR"/>
@@ -379,6 +407,11 @@
                                 <exclude reference="smL-3I-0Mb"/>
                                 <exclude reference="gKd-Mb-Mx0"/>
                                 <exclude reference="km7-VA-OdG"/>
+                                <exclude reference="QqQ-7m-BD4"/>
+                                <exclude reference="VoZ-2w-MUp"/>
+                                <exclude reference="2Jh-Uf-gDg"/>
+                                <exclude reference="8xy-w8-Oxg"/>
+                                <exclude reference="JaC-bG-mrC"/>
                                 <exclude reference="tdd-nL-UT6"/>
                             </mask>
                         </variation>
@@ -388,6 +421,8 @@
                                 <include reference="fLJ-gu-JZ6"/>
                                 <include reference="z04-Vb-poi"/>
                                 <include reference="dkJ-4G-aD1"/>
+                                <include reference="xeg-Qd-3Uy"/>
+                                <include reference="ofz-OX-zH8"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="7YO-PB-aoR"/>
@@ -400,11 +435,19 @@
                                 <include reference="smL-3I-0Mb"/>
                                 <include reference="gKd-Mb-Mx0"/>
                                 <include reference="km7-VA-OdG"/>
+                                <include reference="QqQ-7m-BD4"/>
+                                <include reference="VoZ-2w-MUp"/>
+                                <include reference="2Jh-Uf-gDg"/>
+                                <include reference="8xy-w8-Oxg"/>
+                                <include reference="JaC-bG-mrC"/>
                                 <include reference="tdd-nL-UT6"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="Fxu-EK-g5M"/>
+                    <connections>
+                        <outlet property="pageNumberControl" destination="xeg-Qd-3Uy" id="dLa-6L-hms"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeO-Ee-awj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -476,7 +519,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="190" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="3sC-eE-FoH">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-01.png" translatesAutoresizingMaskIntoConstraints="NO" id="3sC-eE-FoH">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </imageView>
