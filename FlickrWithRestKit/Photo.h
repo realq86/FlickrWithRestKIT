@@ -20,6 +20,7 @@
 @property (nonatomic) long long isfriend;
 @property (nonatomic) long long ispublic;
 @property (nonatomic, strong) NSString *owner;
+@property (nonatomic, strong) NSString *photoSize;
 
 
 @end

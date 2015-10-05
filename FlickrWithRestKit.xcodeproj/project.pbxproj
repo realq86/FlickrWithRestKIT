@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14618B161BC246060086B3BD /* InterestingCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14618B151BC246060086B3BD /* InterestingCollectionViewController.m */; };
+		14618B1A1BC246A10086B3BD /* RecentCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14618B191BC246A10086B3BD /* RecentCollectionViewController.m */; };
 		1465F6071BC097270032DD37 /* TestFlickrAPINoRESTKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 1465F6061BC097270032DD37 /* TestFlickrAPINoRESTKit.m */; };
 		1465F60A1BC0E33C0032DD37 /* RecentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1465F6091BC0E33C0032DD37 /* RecentViewController.m */; };
 		1465F60D1BC0E35E0032DD37 /* InterestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1465F60C1BC0E35E0032DD37 /* InterestingViewController.m */; };
+		1493F42F1BC318B100EA1119 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1493F42E1BC318B100EA1119 /* MainViewController.m */; };
+		1493F4321BC31FFB00EA1119 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1493F4311BC31FFB00EA1119 /* wallpaper.jpg */; };
+		14B2D2A81BC1A8F20040C87E /* ParentCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B2D2A71BC1A8F20040C87E /* ParentCollectionViewController.m */; };
+		14B2D2AC1BC1AB340040C87E /* ParentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B2D2AB1BC1AB340040C87E /* ParentCollectionViewCell.m */; };
+		14B2D2AE1BC1B43D0040C87E /* logo-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 14B2D2AD1BC1B43D0040C87E /* logo-01.png */; };
 		14D5EC411BBF0333000B775C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D5EC401BBF0333000B775C /* main.m */; };
 		14D5EC441BBF0333000B775C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D5EC431BBF0333000B775C /* AppDelegate.m */; };
 		14D5EC4A1BBF0333000B775C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5EC481BBF0333000B775C /* Main.storyboard */; };
@@ -33,11 +40,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		14618B141BC246060086B3BD /* InterestingCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestingCollectionViewController.h; sourceTree = "<group>"; };
+		14618B151BC246060086B3BD /* InterestingCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestingCollectionViewController.m; sourceTree = "<group>"; };
+		14618B181BC246A10086B3BD /* RecentCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentCollectionViewController.h; sourceTree = "<group>"; };
+		14618B191BC246A10086B3BD /* RecentCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentCollectionViewController.m; sourceTree = "<group>"; };
 		1465F6061BC097270032DD37 /* TestFlickrAPINoRESTKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestFlickrAPINoRESTKit.m; sourceTree = "<group>"; };
 		1465F6081BC0E33C0032DD37 /* RecentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentViewController.h; sourceTree = "<group>"; };
 		1465F6091BC0E33C0032DD37 /* RecentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentViewController.m; sourceTree = "<group>"; };
 		1465F60B1BC0E35E0032DD37 /* InterestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterestingViewController.h; sourceTree = "<group>"; };
 		1465F60C1BC0E35E0032DD37 /* InterestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterestingViewController.m; sourceTree = "<group>"; };
+		1493F42D1BC318B100EA1119 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		1493F42E1BC318B100EA1119 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		1493F4311BC31FFB00EA1119 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = "<group>"; };
+		14B2D2A61BC1A8F20040C87E /* ParentCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentCollectionViewController.h; sourceTree = "<group>"; };
+		14B2D2A71BC1A8F20040C87E /* ParentCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentCollectionViewController.m; sourceTree = "<group>"; };
+		14B2D2AA1BC1AB340040C87E /* ParentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentCollectionViewCell.h; sourceTree = "<group>"; };
+		14B2D2AB1BC1AB340040C87E /* ParentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentCollectionViewCell.m; sourceTree = "<group>"; };
+		14B2D2AD1BC1B43D0040C87E /* logo-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-01.png"; sourceTree = "<group>"; };
 		14D5EC3B1BBF0333000B775C /* FlickrWithRestKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrWithRestKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5EC3F1BBF0333000B775C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14D5EC401BBF0333000B775C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -79,6 +98,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14618B171BC2460E0086B3BD /* Interesting CollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14618B141BC246060086B3BD /* InterestingCollectionViewController.h */,
+				14618B151BC246060086B3BD /* InterestingCollectionViewController.m */,
+			);
+			name = "Interesting CollectionViewController";
+			sourceTree = "<group>";
+		};
+		14618B1B1BC246A90086B3BD /* Recent ColletionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14618B181BC246A10086B3BD /* RecentCollectionViewController.h */,
+				14618B191BC246A10086B3BD /* RecentCollectionViewController.m */,
+			);
+			name = "Recent ColletionViewController";
+			sourceTree = "<group>";
+		};
 		1465F60E1BC0E9270032DD37 /* Parent TableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +141,26 @@
 				1465F60C1BC0E35E0032DD37 /* InterestingViewController.m */,
 			);
 			name = "Interesting TableViewController";
+			sourceTree = "<group>";
+		};
+		1493F4301BC318B700EA1119 /* Main ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1493F42D1BC318B100EA1119 /* MainViewController.h */,
+				1493F42E1BC318B100EA1119 /* MainViewController.m */,
+			);
+			name = "Main ViewController";
+			sourceTree = "<group>";
+		};
+		14B2D2A91BC1A8FD0040C87E /* Parent CollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14B2D2A61BC1A8F20040C87E /* ParentCollectionViewController.h */,
+				14B2D2A71BC1A8F20040C87E /* ParentCollectionViewController.m */,
+				14B2D2AA1BC1AB340040C87E /* ParentCollectionViewCell.h */,
+				14B2D2AB1BC1AB340040C87E /* ParentCollectionViewCell.m */,
+			);
+			name = "Parent CollectionViewController";
 			sourceTree = "<group>";
 		};
 		14D5EC321BBF0333000B775C = {
@@ -132,9 +189,10 @@
 				14D5EC421BBF0333000B775C /* AppDelegate.h */,
 				14D5EC431BBF0333000B775C /* AppDelegate.m */,
 				14D5EC6E1BBF6B9A000B775C /* Flickr Model */,
-				1465F60E1BC0E9270032DD37 /* Parent TableViewController */,
-				1465F60F1BC0E9390032DD37 /* Recent TableViewController */,
-				1465F6101BC0E9460032DD37 /* Interesting TableViewController */,
+				1493F4301BC318B700EA1119 /* Main ViewController */,
+				14618B171BC2460E0086B3BD /* Interesting CollectionViewController */,
+				14618B1B1BC246A90086B3BD /* Recent ColletionViewController */,
+				14B2D2A91BC1A8FD0040C87E /* Parent CollectionViewController */,
 				14D5EC481BBF0333000B775C /* Main.storyboard */,
 				14D5EC4B1BBF0333000B775C /* Images.xcassets */,
 				14D5EC4D1BBF0333000B775C /* LaunchScreen.xib */,
@@ -146,6 +204,11 @@
 		14D5EC3E1BBF0333000B775C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1465F60E1BC0E9270032DD37 /* Parent TableViewController */,
+				1465F60F1BC0E9390032DD37 /* Recent TableViewController */,
+				1465F6101BC0E9460032DD37 /* Interesting TableViewController */,
+				14B2D2AD1BC1B43D0040C87E /* logo-01.png */,
+				1493F4311BC31FFB00EA1119 /* wallpaper.jpg */,
 				14D5EC3F1BBF0333000B775C /* Info.plist */,
 				14D5EC401BBF0333000B775C /* main.m */,
 			);
@@ -281,8 +344,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				14D5EC4A1BBF0333000B775C /* Main.storyboard in Resources */,
+				14B2D2AE1BC1B43D0040C87E /* logo-01.png in Resources */,
 				14D5EC4F1BBF0333000B775C /* LaunchScreen.xib in Resources */,
 				14D5EC4C1BBF0333000B775C /* Images.xcassets in Resources */,
+				1493F4321BC31FFB00EA1119 /* wallpaper.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,12 +398,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14B2D2A81BC1A8F20040C87E /* ParentCollectionViewController.m in Sources */,
 				1465F60D1BC0E35E0032DD37 /* InterestingViewController.m in Sources */,
+				14618B161BC246060086B3BD /* InterestingCollectionViewController.m in Sources */,
 				14D5EC441BBF0333000B775C /* AppDelegate.m in Sources */,
+				1493F42F1BC318B100EA1119 /* MainViewController.m in Sources */,
 				14D5EC411BBF0333000B775C /* main.m in Sources */,
 				14D5EC691BBF056B000B775C /* Photo.m in Sources */,
+				14B2D2AC1BC1AB340040C87E /* ParentCollectionViewCell.m in Sources */,
 				14D5EC661BBF038C000B775C /* TestTableViewController.m in Sources */,
 				14D5EC6D1BBF6B96000B775C /* FlickrServer.m in Sources */,
+				14618B1A1BC246A10086B3BD /* RecentCollectionViewController.m in Sources */,
 				1465F60A1BC0E33C0032DD37 /* RecentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

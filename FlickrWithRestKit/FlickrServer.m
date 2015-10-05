@@ -20,36 +20,16 @@
 #define kPHOTO_SIZE_DEFAULT @"m"
 #define kPHOTO_SIZE_THUMBNAIL @"t"
 
-/*
-typedef NS_ENUM(NSInteger, photoSizeValues){
-    SmallSquare75x75size = 1,
-    LargeSquare150x150 = @"q",
-    Thumbnail = @"t",
-    Small240OnLong = @"m",
-    Small320OnLong = @"n",
-    Medium500OnLong = @"-",
-    Medium640OnLong = @"z",
-
-    Medium800OnLong = @"c";
-    Large1024OnLong = @"b";
-    Large1600OnLong = @"h";
-    Large2048OnLong = @"k";
-};*/
-
-
 @interface FlickrServer()
-
 @property (nonatomic, strong) NSString *apiKey;
 @property (nonatomic, strong) NSMutableArray *photosObjectArray;
 @property (nonatomic, strong) NSMutableDictionary *uiImageDictionary;
 @property (nonatomic, strong) NSString *perPageSize;
-
 @end
-
 
 @implementation FlickrServer
 
-
+//Let FlickrServer act like a Singleton
 + (FlickrServer *)sharedInstance{
     
     static FlickrServer *_sharedInstance = nil;
@@ -62,11 +42,11 @@ typedef NS_ENUM(NSInteger, photoSizeValues){
 }
 
 - (instancetype)init{
+    self = [super init];
     
-        self = [super init];
-    
-        [self setFlickrAPIKey:kCLIENTID];
-        [self setValidPageSize:kNUMBER_PER_PAGE_DEFAULT];
+    //Set default API Key and PageSize
+    [self setFlickrAPIKey:kCLIENTID];
+    [self setValidPageSize:kNUMBER_PER_PAGE_DEFAULT];
 
     return self;
 }
@@ -107,6 +87,7 @@ typedef NS_ENUM(NSInteger, photoSizeValues){
 //Public API for Flickr API method: flickr.interesting.getList
 - (void)flickrInterestingnessGetListAtSize:(NSString *)photoSize withBlock:(void(^)(NSError *error, NSArray *photoObjectsArray))block{
     
+    NSLog(@"ClientID is %@", self.apiKey);
     //Check if PhotoSizes paramater is valid or set default
     photoSize = [FlickrServer checkValidPhotoSizes:photoSize];
 
@@ -192,6 +173,7 @@ typedef NS_ENUM(NSInteger, photoSizeValues){
                     photo.server = [photoObject[@"server"] intValue];
                     photo.photoID = [photoObject[@"id"] longLongValue];
                     photo.server = [photoObject[@"server"] intValue];
+                    photo.photoSize = photoSize;
                     photo.owner = photoObject[@"owner"];
                     photo.secret = photoObject[@"secret"];
                     photo.isfamily = [photoObject[@"isfamily"] intValue];
@@ -296,7 +278,10 @@ typedef NS_ENUM(NSInteger, photoSizeValues){
             self.uiImageDictionary = [[NSMutableDictionary alloc] init];
             
             for(int i=0; i<photosObjectsArray.count; i++){
-                NSString *fileFromImageURL = [self flickrPhotoURLForFlickrPhoto:photosObjectsArray[i] size:kPHOTO_SIZE_THUMBNAIL];
+                
+                Photo *photo = photosObjectsArray[i];
+                
+                NSString *fileFromImageURL = [self flickrPhotoURLForFlickrPhoto:photo size:photo.photoSize];
                 NSLog(@"fileFromImageURL = %@", fileFromImageURL.description);
                 NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fileFromImageURL]
                                                           options:0

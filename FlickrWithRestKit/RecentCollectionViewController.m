@@ -1,58 +1,49 @@
 //
-//  InterestingViewController.m
+//  RecentCollectionViewController.m
 //  FlickrWithRestKit
 //
-//  Created by Michael on 10/3/15.
+//  Created by Michael on 10/4/15.
 //  Copyright (c) 2015 Michael. All rights reserved.
 //
 
-#import "InterestingViewController.h"
+#import "RecentCollectionViewController.h"
 
-@interface InterestingViewController ()
+#define kCLIENTID @"d5c7df3552b89d13fe311eb42715b510"
+
+
+@interface RecentCollectionViewController ()
 
 @end
 
-@implementation InterestingViewController
+@implementation RecentCollectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.uiImageDictionary = [[NSMutableDictionary alloc] init];
-    
-    FlickrServer *flickrServer = [FlickrServer sharedInstance];
-    [flickrServer setValidPageSize:@"20"];
-    
-    [flickrServer flickrInterestingnessGetListAtSize:@"t" withBlock:^(NSError *error, NSArray *photoObjectsArray) {
-        
-        [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
-            
-            self.uiImageDictionary = uiImageDictionary;
-            [self.tableView reloadData];
-            
-        }];
-        
-        
-    }];
+    //Set UI of Navigationbar.
+    self.navigationItem.title = @"getRecent";
+    self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated{
     
+    //Instanciate FlickrServer instance, and load 20 photos at the designated photoSize
+    FlickrServer *flickrServer = [FlickrServer sharedInstance];
+    [flickrServer setFlickrAPIKey:kCLIENTID];
+    [flickrServer setValidPageSize:@"20"];
+    [flickrServer flickrPhotosRecentAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
+        [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
+            self.uiImageDictionary = uiImageDictionary;
+            [self.collectionView reloadData];
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InterestingTableViewCellID" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    cell.imageView.image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
-    
-    
-    return cell;
 }
 
 /*
