@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ofW-0W-9Vn">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -397,22 +398,22 @@
                                 <exclude reference="ofz-OX-zH8"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="7YO-PB-aoR"/>
-                                <exclude reference="Yvu-HQ-rK1"/>
-                                <exclude reference="y0U-jx-H1g"/>
-                                <exclude reference="LGY-7v-rsj"/>
-                                <exclude reference="zU6-ox-jvh"/>
+                                <exclude reference="tdd-nL-UT6"/>
                                 <exclude reference="QyV-NT-cOl"/>
                                 <exclude reference="oRC-PX-v0L"/>
                                 <exclude reference="smL-3I-0Mb"/>
-                                <exclude reference="gKd-Mb-Mx0"/>
-                                <exclude reference="km7-VA-OdG"/>
                                 <exclude reference="QqQ-7m-BD4"/>
                                 <exclude reference="VoZ-2w-MUp"/>
                                 <exclude reference="2Jh-Uf-gDg"/>
                                 <exclude reference="8xy-w8-Oxg"/>
                                 <exclude reference="JaC-bG-mrC"/>
-                                <exclude reference="tdd-nL-UT6"/>
+                                <exclude reference="7YO-PB-aoR"/>
+                                <exclude reference="Yvu-HQ-rK1"/>
+                                <exclude reference="y0U-jx-H1g"/>
+                                <exclude reference="LGY-7v-rsj"/>
+                                <exclude reference="zU6-ox-jvh"/>
+                                <exclude reference="gKd-Mb-Mx0"/>
+                                <exclude reference="km7-VA-OdG"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -425,22 +426,22 @@
                                 <include reference="ofz-OX-zH8"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="7YO-PB-aoR"/>
-                                <include reference="Yvu-HQ-rK1"/>
-                                <include reference="y0U-jx-H1g"/>
-                                <include reference="LGY-7v-rsj"/>
-                                <include reference="zU6-ox-jvh"/>
+                                <include reference="tdd-nL-UT6"/>
                                 <include reference="QyV-NT-cOl"/>
                                 <include reference="oRC-PX-v0L"/>
                                 <include reference="smL-3I-0Mb"/>
-                                <include reference="gKd-Mb-Mx0"/>
-                                <include reference="km7-VA-OdG"/>
                                 <include reference="QqQ-7m-BD4"/>
                                 <include reference="VoZ-2w-MUp"/>
                                 <include reference="2Jh-Uf-gDg"/>
                                 <include reference="8xy-w8-Oxg"/>
                                 <include reference="JaC-bG-mrC"/>
-                                <include reference="tdd-nL-UT6"/>
+                                <include reference="7YO-PB-aoR"/>
+                                <include reference="Yvu-HQ-rK1"/>
+                                <include reference="y0U-jx-H1g"/>
+                                <include reference="LGY-7v-rsj"/>
+                                <include reference="zU6-ox-jvh"/>
+                                <include reference="gKd-Mb-Mx0"/>
+                                <include reference="km7-VA-OdG"/>
                             </mask>
                         </variation>
                     </view>
