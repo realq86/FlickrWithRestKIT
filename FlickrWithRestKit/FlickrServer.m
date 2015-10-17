@@ -272,7 +272,7 @@
     {
         size = kPHOTO_SIZE_DEFAULT;
     }
-    return [NSString stringWithFormat:@"http://farm%d.staticflickr.com/%d/%lld_%@_%@.jpg",flickrPhoto.farm,flickrPhoto.server,flickrPhoto.photoID,flickrPhoto.secret,size];
+    return [NSString stringWithFormat:@"https://farm%d.staticflickr.com/%d/%lld_%@_%@.jpg",flickrPhoto.farm,flickrPhoto.server,flickrPhoto.photoID,flickrPhoto.secret,size];
 }
 
 
@@ -297,6 +297,7 @@
                 NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:fileFromImageURL]
                                                           options:0
                                                             error:nil];
+                
                 
                 UIImage *image = [UIImage imageWithData:imageData];
                 
