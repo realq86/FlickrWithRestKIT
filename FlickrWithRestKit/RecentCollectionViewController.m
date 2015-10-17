@@ -16,7 +16,6 @@
 @property (nonatomic) Photo *selectedPhotoObject;
 @property (nonatomic) NSArray *photoObjectsArray;
 
-
 @end
 
 @implementation RecentCollectionViewController

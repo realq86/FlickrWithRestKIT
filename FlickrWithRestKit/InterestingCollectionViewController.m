@@ -12,9 +12,9 @@
 
 
 @interface InterestingCollectionViewController ()
+
 @property (nonatomic) NSArray *photoObjectsArray;
 @property (nonatomic) Photo *selectedPhotoObject;
-
 
 @end
 
