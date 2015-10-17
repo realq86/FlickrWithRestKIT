@@ -7,6 +7,7 @@
 //
 
 #import "InterestingCollectionViewController.h"
+#import "ParentCollectionViewCell.h"
 
 #define kCLIENTID @"d5c7df3552b89d13fe311eb42715b510"
 
@@ -35,8 +36,9 @@
     [flickrServer setFlickrAPIKey:kCLIENTID];
     [flickrServer setValidPageSize:@"20"];
     [flickrServer setValidPageIndex:self.pageIndex];
-    [flickrServer flickrInterestingnessGetListAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
-    [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
+    [flickrServer flickrInterestingnessGetListAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray)
+    {
+        [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
             self.uiImageDictionary = uiImageDictionary;
             [self.collectionView reloadData];
         }];
@@ -48,6 +50,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
