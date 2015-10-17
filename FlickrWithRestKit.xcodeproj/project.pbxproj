@@ -17,6 +17,7 @@
 		14B2D2A81BC1A8F20040C87E /* ParentCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B2D2A71BC1A8F20040C87E /* ParentCollectionViewController.m */; };
 		14B2D2AC1BC1AB340040C87E /* ParentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B2D2AB1BC1AB340040C87E /* ParentCollectionViewCell.m */; };
 		14B2D2AE1BC1B43D0040C87E /* logo-01.png in Resources */ = {isa = PBXBuildFile; fileRef = 14B2D2AD1BC1B43D0040C87E /* logo-01.png */; };
+		14D0FA731BD2E88A008EC413 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D0FA721BD2E88A008EC413 /* DetailViewController.m */; settings = {ASSET_TAGS = (); }; };
 		14D5EC411BBF0333000B775C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D5EC401BBF0333000B775C /* main.m */; };
 		14D5EC441BBF0333000B775C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D5EC431BBF0333000B775C /* AppDelegate.m */; };
 		14D5EC4A1BBF0333000B775C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14D5EC481BBF0333000B775C /* Main.storyboard */; };
@@ -57,6 +58,8 @@
 		14B2D2AA1BC1AB340040C87E /* ParentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParentCollectionViewCell.h; sourceTree = "<group>"; };
 		14B2D2AB1BC1AB340040C87E /* ParentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParentCollectionViewCell.m; sourceTree = "<group>"; };
 		14B2D2AD1BC1B43D0040C87E /* logo-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-01.png"; sourceTree = "<group>"; };
+		14D0FA711BD2E88A008EC413 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		14D0FA721BD2E88A008EC413 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		14D5EC3B1BBF0333000B775C /* FlickrWithRestKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrWithRestKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D5EC3F1BBF0333000B775C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		14D5EC401BBF0333000B775C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -163,6 +166,15 @@
 			name = "Parent CollectionViewController";
 			sourceTree = "<group>";
 		};
+		14D0FA741BD2E890008EC413 /* Detail ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14D0FA711BD2E88A008EC413 /* DetailViewController.h */,
+				14D0FA721BD2E88A008EC413 /* DetailViewController.m */,
+			);
+			name = "Detail ViewController";
+			sourceTree = "<group>";
+		};
 		14D5EC321BBF0333000B775C = {
 			isa = PBXGroup;
 			children = (
@@ -190,9 +202,10 @@
 				14D5EC431BBF0333000B775C /* AppDelegate.m */,
 				14D5EC6E1BBF6B9A000B775C /* Flickr Model */,
 				1493F4301BC318B700EA1119 /* Main ViewController */,
+				14B2D2A91BC1A8FD0040C87E /* Parent CollectionViewController */,
 				14618B1B1BC246A90086B3BD /* Recent ColletionViewController */,
 				14618B171BC2460E0086B3BD /* Interesting CollectionViewController */,
-				14B2D2A91BC1A8FD0040C87E /* Parent CollectionViewController */,
+				14D0FA741BD2E890008EC413 /* Detail ViewController */,
 				14D5EC481BBF0333000B775C /* Main.storyboard */,
 				14D5EC4B1BBF0333000B775C /* Images.xcassets */,
 				14D5EC4D1BBF0333000B775C /* LaunchScreen.xib */,
@@ -407,6 +420,7 @@
 				14D5EC691BBF056B000B775C /* Photo.m in Sources */,
 				14B2D2AC1BC1AB340040C87E /* ParentCollectionViewCell.m in Sources */,
 				14D5EC661BBF038C000B775C /* TestTableViewController.m in Sources */,
+				14D0FA731BD2E88A008EC413 /* DetailViewController.m in Sources */,
 				14D5EC6D1BBF6B96000B775C /* FlickrServer.m in Sources */,
 				14618B1A1BC246A10086B3BD /* RecentCollectionViewController.m in Sources */,
 				1465F60A1BC0E33C0032DD37 /* RecentViewController.m in Sources */,

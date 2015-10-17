@@ -12,7 +12,6 @@
 
 @interface ParentCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
-
 @end
 
 @implementation ParentCollectionViewController
@@ -20,15 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    //[self.collectionView registerClass:[ParentCollectionViewCell class] forCellWithReuseIdentifier:@"ParentCollectionViewCellID"];
-    
-    // Do any additional setup after loading the view.
-   
+
+    //Init common properties for all childs
     self.uiImageDictionary = [[NSMutableDictionary alloc] init];
     self.collectionView.pagingEnabled = NO;
 
@@ -88,6 +80,7 @@
 //Set Size of Collection View Cell
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    /*
     CGRect collViewRect = self.collectionView.bounds;
     CGFloat collViewWidth = collViewRect.size.width;
     CGFloat collViewHeight = collViewRect.size.height;
@@ -96,12 +89,9 @@
     CGFloat top = self.topLayoutGuide.length;
     CGFloat bottom = self.bottomLayoutGuide.length;
     NSLog(@"collViewRect - top = %f", collViewHeight - top);
-    
-    //Set Cell Size to Full screen minus the top and bottom Layout constrints like Navigation bar.
-    //CGSize cellBounds = CGSizeMake(collViewWidth, collViewHeight-top-bottom);
+    */
     
     UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
-    NSLog(@"ParentCollectionViewController: image size is %@", image.description);
     CGSize cellBounds;
     CGSize parentSize = self.collectionView.bounds.size;
 
@@ -109,11 +99,11 @@
     if(image.size.height > image.size.width){
         cellBounds.width = (parentSize.width-60)/2;
         cellBounds.height = cellBounds.width*1.7;
-    }
+    } // if image is landscape
     else if( image.size.width > image.size.height){
         cellBounds.width = parentSize.width-40;
         cellBounds.height = cellBounds.width*0.6;
-    }
+    }// if image is square
     else if( image.size.width == image.size.height){
         cellBounds.width = (parentSize.width-60)/2;
         cellBounds.height = cellBounds.width;
@@ -133,6 +123,7 @@
     //Set CollectionView's active range to full screen within NavigationBar
     return UIEdgeInsetsMake(0, 20, 20, 20);
 }
+
 
 #pragma mark <UICollectionViewDelegate>
 
