@@ -29,6 +29,35 @@
     self.navigationItem.title = @"getRecent";
     self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
     
+    //Load from Flickr API
+    [self callFlickrAPIWithCompletionHandler:^{
+        
+    }];
+    
+    //Pull to refresh
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(startRefresh:)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
+
+}
+
+- (void)startRefresh:(id)sender{
+    [self callFlickrAPIWithCompletionHandler:^{
+        [sender endRefreshing];
+    }];
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+//Flickr API called with completionHandler
+- (void)callFlickrAPIWithCompletionHandler:(void(^)(void))completion {
+    
     //Instanciate FlickrServer instance, and load 20 photos at the designated photoSize
     FlickrServer *flickrServer = [FlickrServer sharedInstance];
     //[flickrServer setFlickrAPIKey:kCLIENTID];
@@ -43,20 +72,15 @@
         
         //Use the result URL from method Recent to fetch image data
         [flickrServer downLoadPhotos:self.photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
-
+            
             //Set the designated data back for tableview.
             self.uiImageDictionary = uiImageDictionary;
             [self.collectionView reloadData];
+            completion();
         }];
     }];
 
-}
-
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
