@@ -79,18 +79,7 @@
 
 //Set Size of Collection View Cell
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    /*
-    CGRect collViewRect = self.collectionView.bounds;
-    CGFloat collViewWidth = collViewRect.size.width;
-    CGFloat collViewHeight = collViewRect.size.height;
-    NSLog(@"collectionView hight %f", collViewHeight);
-
-    CGFloat top = self.topLayoutGuide.length;
-    CGFloat bottom = self.bottomLayoutGuide.length;
-    NSLog(@"collViewRect - top = %f", collViewHeight - top);
-    */
-    
+        
     UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
     CGSize cellBounds;
     CGSize parentSize = self.collectionView.bounds.size;
