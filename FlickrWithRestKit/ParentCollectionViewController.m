@@ -30,7 +30,7 @@
     // Do any additional setup after loading the view.
    
     self.uiImageDictionary = [[NSMutableDictionary alloc] init];
-    self.collectionView.pagingEnabled = YES;
+    self.collectionView.pagingEnabled = NO;
 
 
 }
@@ -67,6 +67,8 @@
     // Set the uiImage inside the cell from the uiImageDictionary
     UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
     cell.imageView.image = image;
+    NSLog(@"cellForItemAtIndexPath: imageView is %@", cell.imageView.image.description);
+    [cell layoutSubviews];
     
     return cell;
 }
@@ -74,13 +76,13 @@
 #pragma UICollectionViewFlowLayoutDelegate
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     
-    return 0;
+    return 10;
 }
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     
-    return 0;
+    return 20;
 }
 
 //Set Size of Collection View Cell
@@ -96,7 +98,30 @@
     NSLog(@"collViewRect - top = %f", collViewHeight - top);
     
     //Set Cell Size to Full screen minus the top and bottom Layout constrints like Navigation bar.
-    CGSize cellBounds = CGSizeMake(collViewWidth, collViewHeight-top-bottom);
+    //CGSize cellBounds = CGSizeMake(collViewWidth, collViewHeight-top-bottom);
+    
+    UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
+    NSLog(@"ParentCollectionViewController: image size is %@", image.description);
+    CGSize cellBounds;
+    CGSize parentSize = self.collectionView.bounds.size;
+
+    //if image is portrit
+    if(image.size.height > image.size.width){
+        cellBounds.width = (parentSize.width-60)/2;
+        cellBounds.height = cellBounds.width*1.7;
+    }
+    else if( image.size.width > image.size.height){
+        cellBounds.width = parentSize.width-40;
+        cellBounds.height = cellBounds.width*0.6;
+    }
+    else if( image.size.width == image.size.height){
+        cellBounds.width = (parentSize.width-60)/2;
+        cellBounds.height = cellBounds.width;
+        
+    }
+    NSLog(@"collectionViewLayout sizeForItemAtIndexPath: imageView is %@", image.description);
+
+    [self.collectionView layoutSubviews];
     
     return cellBounds;
 }
@@ -106,7 +131,7 @@
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
     //Set CollectionView's active range to full screen within NavigationBar
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return UIEdgeInsetsMake(0, 20, 20, 20);
 }
 
 #pragma mark <UICollectionViewDelegate>
