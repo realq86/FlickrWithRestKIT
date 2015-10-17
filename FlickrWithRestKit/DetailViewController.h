@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Photo.h"
 
 @interface DetailViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIImageView *fullScreenImage;
+@property (nonatomic) Photo *photoObject;
 
 @end
