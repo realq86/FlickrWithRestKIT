@@ -47,15 +47,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (ParentCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ParentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ParentCollectionViewCellID" forIndexPath:indexPath];
-    
-    // Set the uiImage inside the cell from the uiImageDictionary
-    UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
-    cell.imageView.image = image;
-    
-    return cell;
-}
 
 /*
 #pragma mark - Navigation
