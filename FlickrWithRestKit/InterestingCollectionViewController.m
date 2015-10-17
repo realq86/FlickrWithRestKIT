@@ -9,7 +9,6 @@
 #import "InterestingCollectionViewController.h"
 #import "ParentCollectionViewCell.h"
 
-#define kCLIENTID @"d5c7df3552b89d13fe311eb42715b510"
 
 
 @interface InterestingCollectionViewController ()
@@ -33,7 +32,6 @@
     
     //Instanciate FlickrServer instance, and load 20 photos at the designated photoSize
     FlickrServer *flickrServer = [FlickrServer sharedInstance];
-    [flickrServer setFlickrAPIKey:kCLIENTID];
     [flickrServer setValidPageSize:@"20"];
     [flickrServer setValidPageIndex:self.pageIndex];
     [flickrServer flickrInterestingnessGetListAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray)

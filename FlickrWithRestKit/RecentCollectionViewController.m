@@ -8,7 +8,6 @@
 
 #import "RecentCollectionViewController.h"
 #import "ParentCollectionViewCell.h"
-#define kCLIENTID @"d5c7df3552b89d13fe311eb42715b510"
 
 
 @interface RecentCollectionViewController ()
@@ -31,7 +30,7 @@
     
     //Instanciate FlickrServer instance, and load 20 photos at the designated photoSize
     FlickrServer *flickrServer = [FlickrServer sharedInstance];
-    [flickrServer setFlickrAPIKey:kCLIENTID];
+    //[flickrServer setFlickrAPIKey:kCLIENTID];
     [flickrServer setValidPageSize:@"20"];
     [flickrServer setValidPageIndex:self.pageIndex];
     [flickrServer flickrPhotosRecentAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
