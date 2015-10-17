@@ -45,13 +45,13 @@
     ParentCollectionViewController *viewController = [segue destinationViewController];
     
     if([[segue identifier] isEqualToString:@"segueToRecentLowRes"] || [[segue identifier] isEqualToString:@"segueToInterestingLowRes"]){
-        viewController.photoSize = @"m";
+        viewController.photoSize = @"t";
         viewController.pageIndex = self.pageNumber;
         NSLog(@"setting size to t");
     }
     
     if([[segue identifier] isEqualToString:@"segueToRecentHiRes"] || [[segue identifier] isEqualToString:@"segueToInterestingHiRes"]){
-        viewController.photoSize = @"z";
+        viewController.photoSize = @"m";
         viewController.pageIndex = self.pageNumber;
 
         NSLog(@"setting size to m");
