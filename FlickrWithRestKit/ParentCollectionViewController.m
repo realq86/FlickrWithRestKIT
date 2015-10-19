@@ -12,7 +12,6 @@
 
 @interface ParentCollectionViewController () <UICollectionViewDelegateFlowLayout>
 
-
 @end
 
 @implementation ParentCollectionViewController
@@ -20,17 +19,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    //[self.collectionView registerClass:[ParentCollectionViewCell class] forCellWithReuseIdentifier:@"ParentCollectionViewCellID"];
-    
-    // Do any additional setup after loading the view.
-   
+
+    //Init common properties for all childs
     self.uiImageDictionary = [[NSMutableDictionary alloc] init];
-    self.collectionView.pagingEnabled = YES;
+    self.collectionView.pagingEnabled = NO;
 
 
 }
@@ -67,6 +59,8 @@
     // Set the uiImage inside the cell from the uiImageDictionary
     UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
     cell.imageView.image = image;
+    NSLog(@"cellForItemAtIndexPath: imageView is %@", cell.imageView.image.description);
+    [cell layoutSubviews];
     
     return cell;
 }
@@ -74,29 +68,39 @@
 #pragma UICollectionViewFlowLayoutDelegate
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     
-    return 0;
+    return 10;
 }
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     
-    return 0;
+    return 20;
 }
 
 //Set Size of Collection View Cell
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CGRect collViewRect = self.collectionView.bounds;
-    CGFloat collViewWidth = collViewRect.size.width;
-    CGFloat collViewHeight = collViewRect.size.height;
-    NSLog(@"collectionView hight %f", collViewHeight);
+        
+    UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
+    CGSize cellBounds;
+    CGSize parentSize = self.collectionView.bounds.size;
 
-    CGFloat top = self.topLayoutGuide.length;
-    CGFloat bottom = self.bottomLayoutGuide.length;
-    NSLog(@"collViewRect - top = %f", collViewHeight - top);
-    
-    //Set Cell Size to Full screen minus the top and bottom Layout constrints like Navigation bar.
-    CGSize cellBounds = CGSizeMake(collViewWidth, collViewHeight-top-bottom);
+    //if image is portrit
+    if(image.size.height > image.size.width){
+        cellBounds.width = (parentSize.width-60)/2;
+        cellBounds.height = cellBounds.width*1.7;
+    } // if image is landscape
+    else if( image.size.width > image.size.height){
+        cellBounds.width = parentSize.width-40;
+        cellBounds.height = cellBounds.width*0.6;
+    }// if image is square
+    else if( image.size.width == image.size.height){
+        cellBounds.width = (parentSize.width-60)/2;
+        cellBounds.height = cellBounds.width;
+        
+    }
+    NSLog(@"collectionViewLayout sizeForItemAtIndexPath: imageView is %@", image.description);
+
+    [self.collectionView layoutSubviews];
     
     return cellBounds;
 }
@@ -106,8 +110,9 @@
 (UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
     //Set CollectionView's active range to full screen within NavigationBar
-    return UIEdgeInsetsMake(0, 0, 0, 0);
+    return UIEdgeInsetsMake(0, 20, 20, 20);
 }
+
 
 #pragma mark <UICollectionViewDelegate>
 

@@ -8,10 +8,13 @@
 
 #import "RecentCollectionViewController.h"
 #import "ParentCollectionViewCell.h"
-#define kCLIENTID @"d5c7df3552b89d13fe311eb42715b510"
-
+#import "DetailViewController.h"
+#import "Photo.h"
 
 @interface RecentCollectionViewController ()
+
+@property (nonatomic) Photo *selectedPhotoObject;
+@property (nonatomic) NSArray *photoObjectsArray;
 
 @end
 
@@ -24,22 +27,25 @@
     //Set UI of Navigationbar.
     self.navigationItem.title = @"getRecent";
     self.navigationController.navigationBar.backgroundColor = [UIColor redColor];
+    
+    //Load from Flickr API
+    [self callFlickrAPIWithCompletionHandler:^{
+        
+    }];
+    
+    //Pull to refresh
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(startRefresh:)
+             forControlEvents:UIControlEventValueChanged];
+    [self.collectionView addSubview:refreshControl];
 
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    
-    //Instanciate FlickrServer instance, and load 20 photos at the designated photoSize
-    FlickrServer *flickrServer = [FlickrServer sharedInstance];
-    [flickrServer setFlickrAPIKey:kCLIENTID];
-    [flickrServer setValidPageSize:@"20"];
-    [flickrServer setValidPageIndex:self.pageIndex];
-    [flickrServer flickrPhotosRecentAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
-        [flickrServer downLoadPhotos:photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
-            self.uiImageDictionary = uiImageDictionary;
-            [self.collectionView reloadData];
-        }];
-    }];}
+- (void)startRefresh:(id)sender{
+    [self callFlickrAPIWithCompletionHandler:^{
+        [sender endRefreshing];
+    }];
+}
 
 
 - (void)didReceiveMemoryWarning {
@@ -47,24 +53,54 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (ParentCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ParentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ParentCollectionViewCellID" forIndexPath:indexPath];
+
+//Flickr API called with completionHandler
+- (void)callFlickrAPIWithCompletionHandler:(void(^)(void))completion {
     
-    // Set the uiImage inside the cell from the uiImageDictionary
-    UIImage *image = [self.uiImageDictionary objectForKey:@(indexPath.row)];
-    cell.imageView.image = image;
+    //Instanciate FlickrServer instance, and load 20 photos at the designated photoSize
+    FlickrServer *flickrServer = [FlickrServer sharedInstance];
+    //[flickrServer setFlickrAPIKey:kCLIENTID];
+    [flickrServer setValidPageSize:@"20"];
+    [flickrServer setValidPageIndex:self.pageIndex];
     
-    return cell;
+    //Call Flickr API with method Recent
+    [flickrServer flickrPhotosRecentAtSize:self.photoSize withBlock:^(NSError *error, NSArray *photoObjectsArray) {
+        
+        //Store the downloaded Photo Object to notify the next ViewController.
+        self.photoObjectsArray = photoObjectsArray;
+        
+        //Use the result URL from method Recent to fetch image data
+        [flickrServer downLoadPhotos:self.photoObjectsArray WithCompletionBlock:^(NSMutableDictionary *uiImageDictionary) {
+            
+            //Set the designated data back for tableview.
+            self.uiImageDictionary = uiImageDictionary;
+            [self.collectionView reloadData];
+            completion();
+        }];
+    }];
+
+    
 }
 
-/*
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    //User selected a cell determin which is selected and push to next ViewController
+    self.selectedPhotoObject = self.photoObjectsArray[indexPath.row];
+    [self performSegueWithIdentifier:@"showDetailViewSegueID" sender:nil];
+    
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+
+    //Set the Photo Object to display at the next ViewController
+    DetailViewController *detailViewController = [segue destinationViewController];
+    detailViewController.photoObject = self.selectedPhotoObject;
+    
 }
-*/
+
 
 @end
